@@ -22,7 +22,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home_view,name='source'),
+    path('', include('posts.urls')),
 ]
 
 if settings.DEBUG:
