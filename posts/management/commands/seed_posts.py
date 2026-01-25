@@ -7,7 +7,6 @@ from posts.models import Post
 
 fake = Faker()
 
-
 class Command(BaseCommand):
     help = "Seed database with fake blog posts"
 
