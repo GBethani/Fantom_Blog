@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # custom apps
     'posts',
+    'categories_tags'
 ]
 
 MIDDLEWARE = [
