@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
 from .upload_paths import upload_post_image
+from categories_tags.models import Category
 import uuid
 
 # Create your models here.
@@ -13,6 +14,7 @@ class Post(models.Model):
     published_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(blank=True,null=True,upload_to=upload_post_image)
     author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    categories = models.ManyToManyField(Category,blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
