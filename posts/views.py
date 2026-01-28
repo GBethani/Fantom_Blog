@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.db.models import Count
 from django.views.generic import ListView,DetailView
 from posts.models import Post
+from categories_tags.models import Category
 import random
 
 
@@ -30,6 +32,10 @@ class PostListView(ListView):
             Post.objects
             .filter(id__in=slider_ids)
             .distinct()
+        )
+
+        context["categories"] = Category.objects.annotate(
+            post_count=Count("post")
         )
 
         return context

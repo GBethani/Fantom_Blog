@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section>
+    <h2> found {{post_count}} results for "{{category.title}}"</h2>
+</section>
+
+<section class="blog_area p_120">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+            <div class="blog_left_sidebar">
+
+                {# 🔁 Loop over paginated posts from ListView #}
+                {% for post in posts %}
+
+                    <article class="blog_style1">
+
+                        <div class="blog_img" style="width: 690px;height: 305px;overflow: hidden;">
+                            {% if post.image %}
+                                <img class="img-fluid" src="{{ post.image.url }}" style="width: 100%;height: 100%;object-fit: cover;display: block;" alt="{{ post.title }}">
+                            {% endif %}
+                        </div>
+
+                        <div class="blog_text">
+                            <div class="blog_text_inner">
+
+                                <a class="cat" href="{% url 'post-detail' slug=post.slug %}">{{post.title}}</a>
+
+                                <p>
+                                    {{ post.body|truncatewords:30 }}
+                                </p>
+
+                                <div class="date">
+                                    <a href="#">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        {{ post.published_at|date:"F d, Y" }}
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa fa-comments-o" aria-hidden="true"></i>
+                                        {{ post.comments.count }}
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </article>
+
+                {% endfor %}
+
+                {# 📄 Pagination stays OUTSIDE the loop #}
+                <nav class="blog-pagination justify-content-center d-flex">
+                    <ul class="pagination">
+
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                <span class="lnr lnr-chevron-left"></span>
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                <span class="lnr lnr-chevron-right"></span>
+                            </a>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                </nav>
+
+            </div>
+            </div>
+	    </div>
+	</div>
+</section>
+
+{% endblock content %}

@@ -23,6 +23,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('posts.urls')),
+    path("categories/", include("categories_tags.urls")),
 ]
 
 if settings.DEBUG:
