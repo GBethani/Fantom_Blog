@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="categories-page">
+    <div class="container">
+        <h2>All Categories</h2>
+
+        <ul class="category-list">
+            {% for cat in categories %}
+                <li>
+                    <a href="{% url 'categories:category-posts' cat.slug %}">
+                        {{ cat.title }}
+                    </a>
+                    <span>({{ cat.post_count }})</span>
+                </li>
+            {% empty %}
+                <li>No categories found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

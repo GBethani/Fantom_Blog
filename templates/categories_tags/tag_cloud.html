@@ -1,0 +1,14 @@
+<aside class="single-sidebar-widget tag_cloud_widget">
+    <h4 class="widget_title">Tag Clouds</h4>
+    <ul class="list">
+        {% for cat in categories %}
+        <li>
+            <a href="{% url 'categories:category-posts' cat.slug %}">
+                {{ cat.title }} ({{ cat.post_count }})
+            </a>
+        </li>
+        {% empty %}
+        <li>No categories</li>
+        {% endfor %}
+    </ul>
+</aside>

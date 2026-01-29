@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <!doctype html>
 <html lang="en">
     <head>
@@ -26,7 +27,7 @@
         <header class="header_area">
             <div class="logo_part">
             	<div class="container">
-            		<a class="logo" href="#"><img src="{% static 'img/logo.png' %}" alt=""></a>
+            		<a class="logo" href="{% url 'post-list' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
             	</div>
             </div>
 			<div class="main_menu">
@@ -42,8 +43,8 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 							<ul class="nav navbar-nav menu_nav">
-								<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li> 
-								<li class="nav-item"><a class="nav-link" href="category.html">Category</a></li>
+								<li class="nav-item active"><a class="nav-link" href="{% url 'post-list' %}">Home</a></li> 
+								<li class="nav-item"><a class="nav-link" href="{% url 'categories:category-index' %}">Category</a></li>
 								<li class="nav-item"><a class="nav-link" href="archive.html">Archive</a></li>
 								<li class="nav-item submenu dropdown">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>

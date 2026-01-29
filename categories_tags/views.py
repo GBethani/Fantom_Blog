@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404
 from .models import Category
+from .querysets import categories_with_post_count
 from posts.models import Post
 
 class CategoryPostListView(ListView):
@@ -31,3 +32,12 @@ class CategoryPostListView(ListView):
         context["post_count"] = self.category.post_set.count()
 
         return context
+
+
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'categories_tags/category_list.html'
+    context_object_name = 'categories'
+
+    def get_queryset(self):
+        return categories_with_post_count()
