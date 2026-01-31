@@ -241,6 +241,18 @@ button:focus {
   background: #ff2f92;
 }
 
+.auth-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth-actions form {
+    margin: 0;
+}
+
+
 .main_menu .navbar {
   background: transparent;
   padding: 0px;

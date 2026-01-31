@@ -33,12 +33,16 @@
                     <img src="{% static 'img/logo.png' %}" alt="">
                 </a>
 
-                <div style="text-align: right;">
+                <div class="auth-actions">
                     {% if user.is_authenticated %}
 
-                    <form method="post" action="{% url 'users:logout' %}" style="display:inline;">
+                    <a href="{% url 'users:password-change' %}" class="genric-btn info circle arrow">
+                        Change Password
+                    </a>
+
+                    <form method="post" action="{% url 'users:logout' %}">
                         {% csrf_token %}
-                        <button type="submit" class="genric-btn info circle arrow">
+                        <button type="submit" class="genric-btn danger circle arrow">
                             Logout
                         </button>
                     </form>
@@ -55,6 +59,7 @@
 
                     {% endif %}
                 </div>
+
             </div>
 
         </div>
