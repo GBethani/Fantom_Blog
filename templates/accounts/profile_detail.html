@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section class="blog_area p_120">
+    <div class="container">
+        <h2>{{ profile.user.username }}</h2>
+
+        {# Profile image #}
+        {% if profile.image %}
+        <img src="{{ profile.image.url }}" alt="Profile image" width="200">
+        {% else %}
+        <img src="{% static 'img/default-avatar.png' %}" alt="Default avatar" width="200">
+        {% endif %}
+
+        <p><strong>Email:</strong> {{ profile.user.email }}</p>
+
+        {% if profile.bio %}
+        <p>{{ profile.bio }}</p>
+        {% else %}
+        <p><em>No bio yet.</em></p>
+        {% endif %}
+
+        {% if profile.birth_day %}
+        <p>Born on {{ profile.birth_day|date:"F j, Y" }}</p>
+        {% endif %}
+
+        <a href="{% url 'users:profile-edit' %}">
+            Edit profile
+        </a>
+    </div>
+</section>
+{% endblock %}

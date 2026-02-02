@@ -9,4 +9,7 @@ urlpatterns = [
     path('logout/',views.UserLogOutView.as_view(),name='logout'),
     path('password/edit/',views.ChangePasswordView.as_view(),name='password-change'),
     path('password/edit/done/',views.ChangePasswordDoneView.as_view(),name='password-change-done'),
+    path('profile/edit/',views.UserProfileUpdateView.as_view(),name='profile-edit'),
+    path('profile/',views.UserProfileDetailView.as_view(),name='profile'),
+    path('<slug:slug>/',views.PublicUserProfileView.as_view(),name='public-profile'),
 ]
