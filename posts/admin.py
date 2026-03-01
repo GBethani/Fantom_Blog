@@ -3,7 +3,7 @@ from . import models
 # Register your models here.
 
 class PostAdmin(admin.ModelAdmin):
-    list_filter = ['published_at', 'categories']
+    list_filter = ['published_at','status']
     list_display = ['slug', 'published_at', 'get_categories']
     search_fields = ['title', 'body']
     prepopulated_fields = {"slug": ("title",)}

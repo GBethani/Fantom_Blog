@@ -77,53 +77,97 @@
                     </button>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav menu_nav">
-                            <li class="nav-item active"><a class="nav-link" href="{% url 'post-list' %}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link"
-                                    href="{% url 'categories:category-index' %}">Category</a></li>
-                            <li class="nav-item"><a class="nav-link" href="archive.html">Archive</a></li>
-                            {% if user.is_authenticated %}
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'users:profile' %}">My Profile</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'users:profile-edit' %}">Edit</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'users:public-profile' user.userprofile.slug %}">
-                                        Public View
-                                    </a>
-                                </li>
-                            </ul>
-                            {% else %}
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'users:login' %}">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'users:register' %}">Register</a>
-                                </li>
-                            </ul>
-                            {% endif %}
 
+                        <!-- Main navbar list -->
+                        <ul class="nav navbar-nav menu_nav">
+
+                            <!-- Normal menu items -->
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'post-list' %}">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'categories:category-index' %}">
+                                    Category
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Archive</a>
+                            </li>
+
+                            <!-- Dropdown parent MUST be inside an <li> -->
                             <li class="nav-item submenu dropdown">
+
+                                <!-- Toggle -->
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Pages</a>
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Account
+                                </a>
+
+                                <!-- Dropdown -->
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a>
+
+                                    {% if user.is_authenticated %}
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'users:profile' %}">
+                                            My Profile
+                                        </a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'users:profile-edit' %}">
+                                            Edit
+                                        </a>
+                                    </li>
+
+                                    <!-- <li class="nav-item">
+                                        <a class="nav-link"
+                                            href="{% url 'users:public-profile' user.userprofile.slug %}">
+                                            Public View
+                                        </a>
+                                    </li> -->
+
+                                    {% else %}
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'users:login' %}">
+                                            Login
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'users:register' %}">
+                                            Register
+                                        </a>
+                                    </li>
+
+                                    {% endif %}
+
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right ml-auto">
-                            <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
+
                         </ul>
                     </div>
+
+                    <li class="nav-item submenu dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false">Pages</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right ml-auto">
+                        <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
+                    </ul>
                 </div>
-            </nav>
+        </div>
+        </nav>
         </div>
     </header>
     <!--================Header Menu Area =================-->
